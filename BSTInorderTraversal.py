@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 
 
 class TreeNode:
@@ -9,8 +9,13 @@ class TreeNode:
 
 
 def inorderTraversal(root: Optional[TreeNode]):
-    for i in range(0, len(root), 3):
-        print(i)
+    result = []
+    recHelper(root, result)
+    return result
 
-root = [1,None,2,3]
-inorderTraversal(root)
+
+def recHelper(root, result):
+    if root:
+        recHelper(root.left, result)
+        result.append(root.val)
+        recHelper(root.right, result)
